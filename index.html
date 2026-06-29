@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <main class="game-container">
+        <header>
+            <h1>R / P / S</h1>
+            <p>First to 5 wins the match.</p>
+        </header>
+
+        <section class="scoreboard">
+            <div class="score-box">
+                <span class="label">Player</span>
+                <span class="score" id="player-score">0</span>
+            </div>
+            <div class="score-divider">:</div>
+            <div class="score-box">
+                <span class="label">Computer</span>
+                <span class="score" id="comp-score">0</span>
+            </div>
+        </section>
+
+        <section class="action-area">
+            <div class="status-msg" id="status-msg">Choose your weapon</div>
+            
+            <div class="choices">
+                <button class="choice-btn" data-choice="rock">
+                    <span class="icon">🪨</span>
+                    <span class="text">Rock</span>
+                </button>
+                <button class="choice-btn" data-choice="paper">
+                    <span class="icon">📄</span>
+                    <span class="text">Paper</span>
+                </button>
+                <button class="choice-btn" data-choice="scissors">
+                    <span class="icon">✂️</span>
+                    <span class="text">Scissors</span>
+                </button>
+            </div>
+        </section>
+
+        <section class="history-area">
+            <h3>Match History</h3>
+            <ul id="history-list" class="history-list">
+                <!-- History items will be prepended here -->
+            </ul>
+        </section>
+
+        <div class="overlay hidden" id="game-over-overlay">
+            <div class="modal">
+                <h2 id="final-result-msg">You Win!</h2>
+                <button id="restart-btn">Play Again</button>
+            </div>
+        </div>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
