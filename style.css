@@ -1,0 +1,250 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono:wght@700&display=swap');
+
+:root {
+    --bg-base: #030303;
+    --bg-surface: #0f0f0f;
+    --bg-element: #1a1a1a;
+    --text-primary: #ffffff;
+    --text-muted: #888888;
+    --border-color: rgba(255, 255, 255, 0.15);
+    --accent: #00ffff; /* Cyan */
+    --accent-hover: #00cccc;
+    --win-color: #33ff33;
+    --lose-color: #ff3333;
+    --draw-color: #aaaaaa;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-base);
+    color: var(--text-primary);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    letter-spacing: -0.02em;
+}
+
+.game-container {
+    width: 100%;
+    max-width: 500px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    position: relative;
+    overflow: hidden;
+}
+
+header {
+    text-align: center;
+    padding: 30px;
+    border-bottom: 1px solid var(--border-color);
+    background: var(--bg-element);
+}
+
+header h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--accent);
+}
+
+header p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-top: 5px;
+}
+
+.scoreboard {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 20px;
+    gap: 20px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.score-box {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    width: 100px;
+}
+
+.score-box .label {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+    letter-spacing: 0.1em;
+}
+
+.score-box .score {
+    font-size: 3rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+}
+
+.score-divider {
+    font-size: 2rem;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--border-color);
+}
+
+.action-area {
+    padding: 40px 30px;
+}
+
+.status-msg {
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 30px;
+    min-height: 28px;
+}
+
+.choices {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.choice-btn {
+    background: var(--bg-element);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    padding: 20px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.choice-btn .icon {
+    font-size: 2rem;
+}
+
+.choice-btn .text {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+}
+
+.choice-btn:hover {
+    background: rgba(0, 255, 255, 0.05);
+    border-color: var(--accent);
+}
+
+.choice-btn:active {
+    background: var(--accent);
+    color: #000;
+}
+
+.history-area {
+    padding: 0 30px 30px 30px;
+}
+
+.history-area h3 {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
+    margin-bottom: 15px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 8px;
+}
+
+.history-list {
+    list-style: none;
+    max-height: 150px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.history-list li {
+    background: var(--bg-element);
+    padding: 10px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    display: flex;
+    justify-content: space-between;
+    border-left: 3px solid transparent;
+}
+
+.history-list li.win { border-left-color: var(--win-color); }
+.history-list li.lose { border-left-color: var(--lose-color); }
+.history-list li.draw { border-left-color: var(--draw-color); }
+
+/* Custom Scrollbar for history */
+.history-list::-webkit-scrollbar {
+    width: 6px;
+}
+.history-list::-webkit-scrollbar-track {
+    background: var(--bg-base);
+}
+.history-list::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(4px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+
+.modal {
+    background: var(--bg-element);
+    border: 1px solid var(--accent);
+    padding: 40px;
+    text-align: center;
+    width: 80%;
+}
+
+.modal h2 {
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 30px;
+}
+
+#restart-btn {
+    background: var(--accent);
+    color: #000;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+#restart-btn:hover {
+    background: var(--accent-hover);
+}
+
+.hidden {
+    display: none !important;
+}
